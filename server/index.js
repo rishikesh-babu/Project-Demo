@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({ message: 'Hello Word' })
 })
 
