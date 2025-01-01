@@ -39,7 +39,11 @@ async function userSignup(req, res, next) {
         const token = generateToken(newUser, 'user')
         console.log('token :>> ', token);
 
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        })
 
         res.status(200).json({ message: "User Created Successfull" })
 
@@ -75,7 +79,11 @@ async function userLogin(req, res, next) {
         }
 
         const token = generateToken(userExist, 'user')
-        res.cookie("token", token)
+        res.cookie("token", token, {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        })
 
         res.send({ message: 'login successful' })
 
@@ -110,7 +118,11 @@ async function userLogout(req, res, next) {
     try {
         console.log('Router: user logout')
 
-        res.clearCookie('token');
+        res.clearCookie('token', {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        });
 
         res.status(200).json({ message: 'user logout successfully' })
     } catch (err) {

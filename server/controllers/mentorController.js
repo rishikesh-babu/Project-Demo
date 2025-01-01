@@ -34,7 +34,11 @@ async function mentorSingnup(req, res, next) {
         console.log('newMentor :>> ', newMentor);
 
         const token = generateToken(newMentor, 'mentor')
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        })
 
         await newMentor.save()
         res.json({ message: 'mentor signup successful' })
@@ -73,7 +77,11 @@ async function mentorLogin(req, res, next) {
 
         const token = generateToken(userExist, 'mentor')
         
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        })
 
         res.json({ message: 'mentor login successful', data: userExist })
 
@@ -97,7 +105,11 @@ async function mentorLogout(req, res, next) {
     try {
         console.log('Router: mentor logout')
         
-        res.clearCookie('token')
+        res.clearCookie('token', {
+            sameSite: 'None',
+            secure: true,
+            httpOnly: true
+        })
         
         res.json({ message: 'mentor logout successful' })
         
