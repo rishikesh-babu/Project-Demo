@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Header } from '../components/user/Header'
 import { Footer } from '../components/user/Footer'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import UserHeader from '../components/user/userHeader'
 import axiosInstance from '../config/axiosInstance';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUserData, saveUserData } from '../redux/features/userSlice';
+import UserHeader from '../components/user/UserHeader';
 
 const Userlayout = () => {
 
